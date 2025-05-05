@@ -129,7 +129,22 @@ def train(params, train_data, val_data):
     })
     df_loss.to_csv('./GMVAE/' + 'train_loss.csv')
 
+
+    #get the validation_dataset cluster label
+    _, _, _, _, patient_id, q_z = model.test(1, val_loader_data, valStatusFile)
+
+    val_label = pd.DataFrame({
+        'p_id': patient_id,
+        'label': np.argmax(np.array(q_z), axis=1),
+        'label1': np.array(q_z[:, 0]),
+        'label2': np.array(q_z[:, 1]),
+        'label3': np.array(q_z[:, 2])  # ,
+        # 'label4': np.array(q_z[:,3]),
+        # 'label5': np.array(q_z[:,4])
+    })
+    val_label.to_csv('./GMVAE/' + 'val_patient_label.csv')
+
     torch.save(model.state_dict(), model_file)
 
-    return 0
+    return model
 
