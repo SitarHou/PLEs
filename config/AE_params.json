@@ -1,0 +1,13 @@
+{
+  "bs": 16,
+  "epochs": 100,
+  "threshold": 0.5,
+  "lr": 0.0001,
+  "nlatent": 80,
+  "depth": 4,
+  "n_hidden_1": 512,
+  "n_hidden_2": 256,
+  "n_hidden_3": 256,
+  "n_hidden_4": 128,
+  "dropout": 0.25
+}
